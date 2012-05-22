@@ -1,0 +1,4 @@
+﻿id,device,timestamp,value
+7cc2ff08-4d05-487b-888a-09d481565977-57,f416bdb2-3848-480a-ab11-77e91a3568b3,1337021283,"{type:""photoSaved"", ""filename"": ""/mnt/sdcard/edu.mit.media.funf.bgcollector/mainPipeline/archive/photo-1337021283.jpg""}"
+6f7b8c23-6df3-4c13-bd8b-ad474c1ae28c-6,f416bdb2-3848-480a-ab11-77e91a3568b3,1337021882,"{type:""photoSaved"", ""filename"": ""/mnt/sdcard/edu.mit.media.funf.bgcollector/mainPipeline/archive/photo-1337021882.jpg""}"
+6f7b8c23-6df3-4c13-bd8b-ad474c1ae28c-20,f416bdb2-3848-480a-ab11-77e91a3568b3,1337022482,"{type:""photoSaved"", ""filename"": ""/mnt/sdcard/edu.mit.media.funf.bgcollector/mainPipeline/archive/photo-1337022482.jpg""}"
