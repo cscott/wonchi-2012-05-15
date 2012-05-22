@@ -195,9 +195,9 @@ requirejs(['commander', 'csv', 'fs', 'printf', './version'], function(program, c
                     var gpOutput;
                     var gpfilename = outfilename;
                     if (isAll) {
-                        var t = Object.create(templateData);
-                        t.ydata = 'all';
-                        gpfilename = printf(program.template, templateData);
+                        var td = Object.create(templateData);
+                        td.ydata = 'all';
+                        gpfilename = printf(program.template, td);
                     };
                     gpOutput = fs.createWriteStream(gpfilename+'.gnuplot',
                                                     { encoding: 'utf-8' });
