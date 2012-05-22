@@ -1,0 +1,38 @@
+﻿id,device,timestamp,filename,index,type,value
+a9e5aca0-2603-4b85-989e-9eaf4fe4a675-16,a552dd47-b5f0-4282-b4bf-b2ec91d30a54,1337039470,/mnt/external1/edu.mit.media.funf.bgcollector/00000001_0388920443a15517_83c9203c-9f64-40a7-973b-b4acd703628a_1337037552_mainPipeline.db,1,fileCopy,
+69b67c69-0567-4ea0-b26c-24aefcfc3f5e-1,a552dd47-b5f0-4282-b4bf-b2ec91d30a54,1337039470,,,,"{""type"":""log"", ""msg"":""moved files automatically"""
+69b67c69-0567-4ea0-b26c-24aefcfc3f5e-265,a552dd47-b5f0-4282-b4bf-b2ec91d30a54,1337041278,/mnt/external1/edu.mit.media.funf.bgcollector/00000002_0388920443a15517_a552dd47-b5f0-4282-b4bf-b2ec91d30a54_1337039475_mainPipeline.db,2,fileCopy,
+69b67c69-0567-4ea0-b26c-24aefcfc3f5e-266,a552dd47-b5f0-4282-b4bf-b2ec91d30a54,1337041278,/mnt/external1/edu.mit.media.funf.bgcollector/00000003_0388920443a15517_photo-1337039488.jpg,3,fileCopy,
+69b67c69-0567-4ea0-b26c-24aefcfc3f5e-267,a552dd47-b5f0-4282-b4bf-b2ec91d30a54,1337041278,/mnt/external1/edu.mit.media.funf.bgcollector/00000004_0388920443a15517_photo-1337040088.jpg,4,fileCopy,
+69b67c69-0567-4ea0-b26c-24aefcfc3f5e-268,a552dd47-b5f0-4282-b4bf-b2ec91d30a54,1337041278,/mnt/external1/edu.mit.media.funf.bgcollector/00000005_0388920443a15517_photo-1337040688.jpg,5,fileCopy,
+c00a1d33-42b5-41d0-901d-2299ba022092-1,a552dd47-b5f0-4282-b4bf-b2ec91d30a54,1337041278,,,,"{""type"":""log"", ""msg"":""moved files automatically"""
+c00a1d33-42b5-41d0-901d-2299ba022092-150,a552dd47-b5f0-4282-b4bf-b2ec91d30a54,1337044879,/mnt/external1/edu.mit.media.funf.bgcollector/00000006_0388920443a15517_a552dd47-b5f0-4282-b4bf-b2ec91d30a54_1337041278_mainPipeline.db,6,fileCopy,
+c00a1d33-42b5-41d0-901d-2299ba022092-151,a552dd47-b5f0-4282-b4bf-b2ec91d30a54,1337044880,/mnt/external1/edu.mit.media.funf.bgcollector/00000007_0388920443a15517_photo-1337041288.jpg,7,fileCopy,
+c00a1d33-42b5-41d0-901d-2299ba022092-152,a552dd47-b5f0-4282-b4bf-b2ec91d30a54,1337044880,/mnt/external1/edu.mit.media.funf.bgcollector/00000008_0388920443a15517_photo-1337041888.jpg,8,fileCopy,
+c00a1d33-42b5-41d0-901d-2299ba022092-153,a552dd47-b5f0-4282-b4bf-b2ec91d30a54,1337044880,/mnt/external1/edu.mit.media.funf.bgcollector/00000009_0388920443a15517_photo-1337042488.jpg,9,fileCopy,
+c00a1d33-42b5-41d0-901d-2299ba022092-154,a552dd47-b5f0-4282-b4bf-b2ec91d30a54,1337044880,/mnt/external1/edu.mit.media.funf.bgcollector/00000010_0388920443a15517_photo-1337043088.jpg,10,fileCopy,
+c00a1d33-42b5-41d0-901d-2299ba022092-155,a552dd47-b5f0-4282-b4bf-b2ec91d30a54,1337044880,/mnt/external1/edu.mit.media.funf.bgcollector/00000011_0388920443a15517_photo-1337043530.jpg,11,fileCopy,
+c00a1d33-42b5-41d0-901d-2299ba022092-156,a552dd47-b5f0-4282-b4bf-b2ec91d30a54,1337044880,/mnt/external1/edu.mit.media.funf.bgcollector/00000012_0388920443a15517_photo-1337044130.jpg,12,fileCopy,
+c00a1d33-42b5-41d0-901d-2299ba022092-157,a552dd47-b5f0-4282-b4bf-b2ec91d30a54,1337044881,/mnt/external1/edu.mit.media.funf.bgcollector/00000013_0388920443a15517_photo-1337044730.jpg,13,fileCopy,
+f0c6bef6-c726-4798-99b2-3ff0fffa9e84-1,a552dd47-b5f0-4282-b4bf-b2ec91d30a54,1337044881,,,,"{""type"":""log"", ""msg"":""moved files automatically"""
+f0c6bef6-c726-4798-99b2-3ff0fffa9e84-37,a552dd47-b5f0-4282-b4bf-b2ec91d30a54,1337046344,/mnt/external1/edu.mit.media.funf.bgcollector/00000014_0388920443a15517_tb-1337044881-0388920443a15517.txt,14,fileCopy,
+f0c6bef6-c726-4798-99b2-3ff0fffa9e84-38,a552dd47-b5f0-4282-b4bf-b2ec91d30a54,1337046344,/mnt/external1/edu.mit.media.funf.bgcollector/00000015_0388920443a15517_a552dd47-b5f0-4282-b4bf-b2ec91d30a54_1337044885_mainPipeline.db,15,fileCopy,
+f0c6bef6-c726-4798-99b2-3ff0fffa9e84-39,a552dd47-b5f0-4282-b4bf-b2ec91d30a54,1337046344,/mnt/external1/edu.mit.media.funf.bgcollector/00000016_0388920443a15517_photo-1337045330.jpg,16,fileCopy,
+f0c6bef6-c726-4798-99b2-3ff0fffa9e84-40,a552dd47-b5f0-4282-b4bf-b2ec91d30a54,1337046344,/mnt/external1/edu.mit.media.funf.bgcollector/00000017_0388920443a15517_photo-1337045930.jpg,17,fileCopy,
+cf152f15-ba26-41ad-ac11-6e8a081b47a1-1,a552dd47-b5f0-4282-b4bf-b2ec91d30a54,1337046344,,,,"{""type"":""log"", ""msg"":""moved files automatically"""
+cf152f15-ba26-41ad-ac11-6e8a081b47a1-129,a552dd47-b5f0-4282-b4bf-b2ec91d30a54,1337049945,/mnt/external1/edu.mit.media.funf.bgcollector/00000018_0388920443a15517_a552dd47-b5f0-4282-b4bf-b2ec91d30a54_1337046344_mainPipeline.db,18,fileCopy,
+cf152f15-ba26-41ad-ac11-6e8a081b47a1-130,a552dd47-b5f0-4282-b4bf-b2ec91d30a54,1337049945,/mnt/external1/edu.mit.media.funf.bgcollector/00000019_0388920443a15517_photo-1337046529.jpg,19,fileCopy,
+cf152f15-ba26-41ad-ac11-6e8a081b47a1-131,a552dd47-b5f0-4282-b4bf-b2ec91d30a54,1337049945,/mnt/external1/edu.mit.media.funf.bgcollector/00000020_0388920443a15517_photo-1337047130.jpg,20,fileCopy,
+cf152f15-ba26-41ad-ac11-6e8a081b47a1-132,a552dd47-b5f0-4282-b4bf-b2ec91d30a54,1337049945,/mnt/external1/edu.mit.media.funf.bgcollector/00000021_0388920443a15517_photo-1337047730.jpg,21,fileCopy,
+cf152f15-ba26-41ad-ac11-6e8a081b47a1-133,a552dd47-b5f0-4282-b4bf-b2ec91d30a54,1337049946,/mnt/external1/edu.mit.media.funf.bgcollector/00000022_0388920443a15517_photo-1337048330.jpg,22,fileCopy,
+cf152f15-ba26-41ad-ac11-6e8a081b47a1-134,a552dd47-b5f0-4282-b4bf-b2ec91d30a54,1337049946,/mnt/external1/edu.mit.media.funf.bgcollector/00000023_0388920443a15517_photo-1337048930.jpg,23,fileCopy,
+cf152f15-ba26-41ad-ac11-6e8a081b47a1-135,a552dd47-b5f0-4282-b4bf-b2ec91d30a54,1337049946,/mnt/external1/edu.mit.media.funf.bgcollector/00000024_0388920443a15517_photo-1337049530.jpg,24,fileCopy,
+c1f44e07-0970-46aa-aea9-daba1a6cd750-1,a552dd47-b5f0-4282-b4bf-b2ec91d30a54,1337049946,,,,"{""type"":""log"", ""msg"":""moved files automatically"""
+c1f44e07-0970-46aa-aea9-daba1a6cd750-332,a552dd47-b5f0-4282-b4bf-b2ec91d30a54,1337053045,/mnt/external1/edu.mit.media.funf.bgcollector/00000025_0388920443a15517_a552dd47-b5f0-4282-b4bf-b2ec91d30a54_1337049946_mainPipeline.db,25,fileCopy,
+c1f44e07-0970-46aa-aea9-daba1a6cd750-333,a552dd47-b5f0-4282-b4bf-b2ec91d30a54,1337053046,/mnt/external1/edu.mit.media.funf.bgcollector/00000026_0388920443a15517_photo-1337050130.jpg,26,fileCopy,
+c1f44e07-0970-46aa-aea9-daba1a6cd750-334,a552dd47-b5f0-4282-b4bf-b2ec91d30a54,1337053047,/mnt/external1/edu.mit.media.funf.bgcollector/00000027_0388920443a15517_photo-1337050730.jpg,27,fileCopy,
+c1f44e07-0970-46aa-aea9-daba1a6cd750-335,a552dd47-b5f0-4282-b4bf-b2ec91d30a54,1337053047,/mnt/external1/edu.mit.media.funf.bgcollector/00000028_0388920443a15517_photo-1337051330.jpg,28,fileCopy,
+c1f44e07-0970-46aa-aea9-daba1a6cd750-336,a552dd47-b5f0-4282-b4bf-b2ec91d30a54,1337053047,/mnt/external1/edu.mit.media.funf.bgcollector/00000029_0388920443a15517_photo-1337051929.jpg,29,fileCopy,
+c1f44e07-0970-46aa-aea9-daba1a6cd750-337,a552dd47-b5f0-4282-b4bf-b2ec91d30a54,1337053048,/mnt/external1/edu.mit.media.funf.bgcollector/00000030_0388920443a15517_photo-1337052530.jpg,30,fileCopy,
+c1f44e07-0970-46aa-aea9-daba1a6cd750-350,a552dd47-b5f0-4282-b4bf-b2ec91d30a54,1337086972,/mnt/external1/edu.mit.media.funf.bgcollector/00000031_0388920443a15517_tb-1337053048-0388920443a15517.txt,31,fileCopy,
+c1f44e07-0970-46aa-aea9-daba1a6cd750-354,a552dd47-b5f0-4282-b4bf-b2ec91d30a54,1337087292,/mnt/external1/edu.mit.media.funf.bgcollector/00000032_0388920443a15517_a552dd47-b5f0-4282-b4bf-b2ec91d30a54_1337086976_mainPipeline.db,32,fileCopy,
