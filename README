@@ -12,3 +12,6 @@ ps2pdf matching.ps
 
 Longest streaks:
 find data -name NellBalloons.csv | xargs src/streak.js
+
+Collecting color change information:
+( for f in $(find . -name "NellBalloons.csv") ; do sed -ne '/colorchange/,$p' $f | fgrep startColor | sed -e 's/^.*startColor,//' ; done ) | sort | uniq -c | sort -n
