@@ -1,0 +1,3 @@
+set terminal postscript landscape color
+set output 'filename'
+for f in *.data ; do gnuplot -e 'set terminal postscript landscape color' -e 'set output "'$f'.ps"' -e 'set title "'$f'"' -e 'plot "'$f'"' ; done
