@@ -12,6 +12,8 @@ requirejs(['commander', 'csv', 'fs', 'printf', './version'], function(program, c
         .option('-V, --version <balloons version>',
                 'Specify the version of nell-balloons which generated this csv',
                 1)
+        .option('-m, --matches',
+                'Process Matches-format CSV')
         .option('-x, --xdata <indexed|nopause|realtime>',
                 'Specify what sort of data to emit on the x axis',
                 'indexed')
@@ -51,11 +53,6 @@ requirejs(['commander', 'csv', 'fs', 'printf', './version'], function(program, c
         var dataOutput = fs.createWriteStream(outfilename+'.data',
                                               { encoding: 'utf-8' });
 
-        var COLORS = ['yellow', 'black', 'lilac', 'orange', 'unknown'];
-        var alive = {};
-        COLORS.forEach(function(color) { alive[color] = []; });
-        var pauseTime = 0;
-
         var wasPaused = 0, outIndex = 0;
         var outFirstTime=null;
         var doLog = function(which, timestamp, color, time, balloon) {
@@ -86,9 +83,12 @@ requirejs(['commander', 'csv', 'fs', 'printf', './version'], function(program, c
             }
         };
 
-        csv().
-            fromPath(csvfile, { columns: true }).
-            on('data', function(data, index) {
+        var COLORS = ['yellow', 'black', 'lilac', 'orange', 'unknown'];
+        var alive = {};
+        COLORS.forEach(function(color) { alive[color] = []; });
+        var pauseTime = 0;
+
+        var balloonsData = function(data, index) {
                 var m, color, time, b;
                 // data has fields 'id', 'device', 'timestamp', 'name', 'value'
                 switch (data.name) {
@@ -186,7 +186,36 @@ requirejs(['commander', 'csv', 'fs', 'printf', './version'], function(program, c
                                   JSON.stringify(data));
                     break;
                 }
-            }).
+        };
+
+        var questionStart = 0;
+        var matchesData = function(data, index) {
+            var s = data.value.split(': ');
+            var name = s[0], value = s[1];
+            switch (name) {
+            case 'QUESTION TYPE':
+                //doLog('start', data.timestamp, null, 0, null);
+                break;
+            case 'START OF NEW QUESTION':
+                questionStart = +data.timestamp;
+                break;
+            case 'ANSWER INCORRECT':
+                doLog('incorrect', data.timestamp, value,
+                      +(data.timestamp) - questionStart, {});
+                break;
+            case 'ANSWER CORRECT':
+                doLog('correct', data.timestamp, value,
+                      +(data.timestamp) - questionStart, {});
+                break;
+            default:
+                console.error('unknown log type #'+index, JSON.stringify(data));
+                break;
+            }
+        };
+
+        csv().
+            fromPath(csvfile, { columns: true }).
+            on('data', program.matches ? matchesData : balloonsData).
             on('end', function(count) {
                 var gp = [];
                 if (program.gnuplot) { gp.push(false); }
