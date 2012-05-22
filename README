@@ -9,3 +9,6 @@ find data -name Matching.csv | xargs src/scatter.js -m -G -g -y all
 for f in *-all.gnuplot ; do gnuplot $f ; done
 psjoin *-all.ps | psnup -l -n4 > matching.ps
 ps2pdf matching.ps
+
+Longest streaks:
+find data -name NellBalloons.csv | xargs src/streak.js
