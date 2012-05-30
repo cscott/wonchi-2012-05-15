@@ -19,3 +19,7 @@ Collecting color change information:
 To interpret Matching data:
 cd src
 ./process-matching.sh
+
+RunningApplicationsProbe info:
+find data -name RunningApplicationsProbe.csv | xargs src/running.js -T "Time between RunningApplicationsProbe Samples" -t rap-timedelta
+find data -name LauncherApp.csv | xargs src/running.js -f la-v1 -T "Time between LauncherApp samples" -t la-timedelta
