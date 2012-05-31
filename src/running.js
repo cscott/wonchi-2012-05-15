@@ -12,19 +12,17 @@ requirejs(['commander', 'csv', 'fs', 'printf', './version'], function(program, c
         .usage('[options] <csvfile> ... <csvfile>')
         .option('-f, --format <csv format>',
                 'Specify the input csv format', 'rap-v1')
-        .option('-x, --xdata <timedelta|weekly|overall|daytime|weektime>',
+        .option('-x, --xdata <timedelta|appalpha|appfreq|daytime|weektime>',
                 'Specify what sort of data to emit on the x axis',
                 'timedelta')
-        .option('-y, --ydata <percent|count>',
+        .option('-y, --ydata <percent|logpercent|count>',
                 'Specify what sort of data to emit on the y axis',
-                'percent')
+                'count')
         .option('-T, --title <graph title>',
                 'Specify title of graph', null)
         .option('-t, --template <output filename template>',
                 'Output template for data & gnuplot files',
-                '%(num)s-%(xdata)s-%(ydata)s')
-        .option('-g, --gnuplot',
-                'Output gnuplot script for data')
+                '%(shortformat)s-%(xdata)s-%(ydata)s')
         .parse(process.argv);
 
     if (program.args.length===0) {
@@ -41,6 +39,10 @@ requirejs(['commander', 'csv', 'fs', 'printf', './version'], function(program, c
                 return;
             }
             lastkey = key;
+            if (data.RUNNING_TASKS_id===null) {
+                console.error("Corrupt CSV entry; index", index);
+                return;
+            }
             if (data.RUNNING_TASKS_baseActivity_mPackage ===
                 'edu.mit.media.prg.launcher') {
                 return; // ignore launcher wrappers
@@ -58,12 +60,17 @@ requirejs(['commander', 'csv', 'fs', 'printf', './version'], function(program, c
                 (/^BMA_CO.Phonics_Lv\d+_Unit\d+$/)) {
                 appname = appname.replace(/\d+/g, '');
             }
-            doLog(data.timestamp, appname);
+            doLog(+data.timestamp, appname);
         };
     };
     var la_v1 = function(doLog) {
         return function(data, index) {
-            doLog(data.timestamp, data.value);
+            var appname = data.value;
+            // normalize phonics app names
+            if (appname.match(/^BMA_CO.Phonics_Lv\d+_Unit\d+$/)) {
+                appname = appname.replace(/\d+/g, '');
+            }
+            doLog(+data.timestamp, appname);
         };
     };
 
@@ -94,6 +101,10 @@ requirejs(['commander', 'csv', 'fs', 'printf', './version'], function(program, c
         if (a > b) { return +1; }
         return 0;
     };
+    Histogram.prototype.labelX = function(x) {
+        // descriptive label for plot data output
+        return x;
+    };
     Histogram.prototype.process = function(timestamp, appname) {
         this.add(appname);
     };
@@ -108,8 +119,16 @@ requirejs(['commander', 'csv', 'fs', 'printf', './version'], function(program, c
     };
     Histogram.prototype.emitData = function(stream) {
         stream.write(program.xdata+'\t'+program.ydata+'\n');
+        var sum = 0;
+        Object.keys(this.bins).forEach(function(b) {
+            sum += +(this.bins[b] || 0);
+        }.bind(this));
         this.sortedBins().forEach(function(bin) {
-            stream.write(bin+'\t'+(this.bins['$'+bin]||0)+'\n');
+            var val = +(this.bins['$'+bin] || 0);
+            if (program.ydata==='percent' || program.ydata==='logpercent') {
+                val = 100 * val / sum;
+            }
+            stream.write(this.labelX(bin)+'\t'+val+'\n');
         }.bind(this));
     };
     Histogram.prototype.emitGnuplot = function(stream, title, dataFilename,
@@ -120,6 +139,9 @@ requirejs(['commander', 'csv', 'fs', 'printf', './version'], function(program, c
                      'set style data histogram\n'+
                      'set style histogram cluster gap 0\n'+
                      'set xtics rotate by -90 scale 0 font ",7" offset character 1,0\n');
+        if (program.ydata === 'logpercent') {
+            stream.write('set logscale y\n');
+        }
         if (this.xlabel) {
             stream.write('set xlabel "'+this.xlabel+'"\n');
         }
@@ -188,10 +210,63 @@ requirejs(['commander', 'csv', 'fs', 'printf', './version'], function(program, c
         return THisto;
     };
 
+    var mkAppFreqHisto = function(sortAlpha) {
+        var AFHisto = new Histogram();
+        if (!sortAlpha) {
+            AFHisto.sortX = function(a, b) {
+                var countA = this.bins['$'+a] || 0;
+                var countB = this.bins['$'+b] || 0;
+                // highest frequency first
+                return (+countB) - (+countA);
+            };
+        }
+        AFHisto.labelX = function(x) {
+            return '"' + x + '"'; // quote app names
+        };
+        return AFHisto;
+    };
+
+    var mkTimeOfDayHisto = function(isWeek) {
+        var TODHisto = new Histogram();
+        TODHisto.process = function(timestamp, appname) {
+            // convert timestamp from GMT to ethiopia local time
+            timestamp = (+timestamp) + (60 * 60) * 3; /* GMT + 3 */
+            // convert to Date object
+            var d = new Date(timestamp * 1000);
+            // punt date reset bug thingies
+            if (d.getFullYear() <= 2000) { return; }
+            // record time of day (or time of week)
+            var hour = d.getHours();
+            if (isWeek) {
+                hour += 24*d.getDay();
+            }
+            this.add(hour);
+        };
+        TODHisto.sortX = function(a, b) {
+            return (+a) - (+b);
+        };
+        TODHisto.labelX = function(x) {
+            var time = (x%24)+'';
+            if (time.length < 2) { time = '0' + time; }
+            time += ':00';
+            if (isWeek) {
+                var day = Math.floor(x/24);
+                day = ['Su','Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'][day];
+                time = '"' + day + ' ' + time + '"';
+            }
+            return time;
+        };
+        return TODHisto;
+    };
+
     var histo;
     if (program.xdata === 'timedelta') {
         histo = mkTimeDeltaHistogram(0, 300);
         program.ydata = 'count';
+    } else if (program.xdata === 'appfreq' || program.xdata === 'appalpha') {
+        histo = mkAppFreqHisto(program.xdata === 'appalpha');
+    } else if (program.xdata === 'daytime' || program.xdata === 'weektime') {
+        histo = mkTimeOfDayHisto(program.xdata==='weektime');
     }
 
     var filesToGo = program.args.length;
@@ -207,7 +282,9 @@ requirejs(['commander', 'csv', 'fs', 'printf', './version'], function(program, c
             index: csvidx,
             xdata: program.xdata,
             ydata: program.ydata,
-            version: program.version
+            version: program.version,
+            format: program.format,
+            shortformat: program.format.replace(/-.*$/, '')
         };
         var outfilename = printf(program.template, templateData);
         var gpfilename = outfilename;
